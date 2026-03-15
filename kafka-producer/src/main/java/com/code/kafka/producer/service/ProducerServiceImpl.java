@@ -3,7 +3,6 @@ package com.code.kafka.producer.service;
 import com.code.kafka.core.dto.ProductDto;
 import com.code.kafka.core.pojo.ProductDetail;
 import com.code.kafka.core.service.ProducerService;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ public class ProducerServiceImpl implements ProducerService {
     @Value("${kafka.topic.name}")
     private String name;
 
-//    @Override
+    @Override
     public String produce(ProductDto productDto) {
         String productId = UUID.randomUUID().toString();
 
@@ -45,17 +44,8 @@ public class ProducerServiceImpl implements ProducerService {
             if (e != null) {
                 logger.info("Exception message : {}", e.getMessage());
             } else {
-                ProducerRecord<String, Object> producerRecord = sendResult.getProducerRecord();
-                logger.info("Topic : {}", producerRecord.topic());
-                logger.info("Key : {}", producerRecord.key());
-                logger.info("Value : {}", producerRecord.value());
-                logger.info("Headers : {}", producerRecord.headers());
-                logger.info("Partition : {}", producerRecord.partition());
-                logger.info("Timestamp : {}", producerRecord.timestamp());
-
                 RecordMetadata recordMetadata = sendResult.getRecordMetadata();
                 logger.info("Timestamp : {}", recordMetadata.timestamp());
-                logger.info("HasTimestamp : {}", recordMetadata.hasTimestamp());
                 logger.info("Partition : {}", recordMetadata.partition());
                 logger.info("Topic : {}", recordMetadata.topic());
                 logger.info("Offset : {}", recordMetadata.offset());

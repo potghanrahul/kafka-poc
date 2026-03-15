@@ -1,3 +1,40 @@
 spring:
   application:
     name: kafka-consumer
+
+#Enable Following properties while autowiring org.springframework.boot.kafka.autoconfigure.KafkaProperties in KafkaConsumeConfig.java
+#  kafka:
+#    bootstrap-servers:
+#    producer:
+#      bootstrap-servers:
+#        - localhost:9092
+#        - localhost:9094
+#        - localhost:9096
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+#    consumer:
+#      bootstrap-servers:
+#        - localhost:9092
+#        - localhost:9094
+#        - localhost:9096
+#      group-id: product-consumer-01
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+#      properties:
+#        spring:
+#          json:
+#            trusted:
+#              packages: "*"
+#          deserializer:
+#            value:
+#              delegate:
+#                class: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
+
+
+kafka:
+  bootstrap-server: localhost:9092,localhost:9094,localhost:9096
+  topicNames: product-detail-topic
+  group-id: product-consumer-01
+  retry-interval: 5000
+  retry-max-attempt: 2
+
