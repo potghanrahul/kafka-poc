@@ -1,10 +1,12 @@
 package com.code.kafka.core.pojo;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ProductDetail {
     private String productId;
     private String name;
